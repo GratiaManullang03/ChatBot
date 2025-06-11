@@ -1,0 +1,15 @@
+// =============================================================================
+// == CONTOH FILE KONFIGURASI ==
+// =============================================================================
+//
+// CARA PENGGUNAAN:
+// 1. Salin (copy) file ini dan ganti namanya menjadi `config.js`.
+// 2. Buka file `config.js` yang baru.
+// 3. Masukkan API Key Anda dari Together.ai ke dalam tanda kutip.
+//
+// PENTING: File `config.js` yang asli sudah ada di dalam .gitignore,
+// sehingga tidak akan pernah terunggah ke GitHub untuk menjaga keamanan API Key Anda.
+//
+// =============================================================================
+
+const TOGETHER_API_KEY = "MASUKKAN_API_KEY_TOGETHER.AI_ANDA_DI_SINI";

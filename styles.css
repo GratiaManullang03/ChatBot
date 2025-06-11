@@ -1,0 +1,101 @@
+/* style.css */
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+.typing-indicator {
+	animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.message-enter {
+	animation: enter 0.3s ease-out forwards;
+}
+@keyframes enter {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.chat-container {
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.chat-window {
+	height: 65vh;
+	max-height: 65vh;
+	scrollbar-width: thin;
+}
+@media (max-width: 768px) {
+	.chat-window {
+		height: 70vh;
+		max-height: 70vh;
+	}
+}
+::-webkit-scrollbar {
+	width: 6px;
+}
+::-webkit-scrollbar-track {
+	background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+	background: #c7d2fe;
+	border-radius: 10px;
+}
+
+/* Styling untuk konten Markdown */
+.message-content ul,
+.message-content ol {
+	padding-left: 20px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	list-style-position: inside;
+}
+.message-content ul {
+	list-style-type: disc;
+}
+.message-content ol {
+	list-style-type: decimal;
+}
+.message-content li {
+	margin-bottom: 4px;
+}
+.message-content p {
+	margin-bottom: 12px;
+}
+.message-content p:last-child {
+	margin-bottom: 0;
+}
+.message-content strong,
+.message-content b {
+	font-weight: 600;
+}
+.message-content code {
+	background-color: #e5e7eb; /* bg-gray-200 */
+	color: #1e293b;
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-family: monospace;
+	font-size: 0.9em;
+}
+.message-content pre {
+	background-color: #1e293b; /* bg-dark */
+	color: #e2e8f0;
+	padding: 12px;
+	border-radius: 8px;
+	overflow-x: auto;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.message-content pre code {
+	background-color: transparent;
+	padding: 0;
+	color: inherit;
+}

@@ -1,0 +1,51 @@
+[
+	{
+		"id": "prod-001",
+		"nama": "Laptop Gaming LegionX",
+		"kategori": "Laptop",
+		"harga": 15000000,
+		"stok": 10,
+		"deskripsi": "Laptop gaming performa tinggi dengan prosesor Core i9, RTX 4080, dan layar 165Hz. Cocok untuk game AAA dan pekerjaan kreatif.",
+		"tags": [
+			"legionx",
+			"laptop",
+			"gaming",
+			"core i9",
+			"rtx 4080",
+			"kreatif",
+			"mahal"
+		]
+	},
+	{
+		"id": "prod-002",
+		"nama": "Keyboard Mekanikal Strikerv2",
+		"kategori": "Aksesoris",
+		"harga": 1200000,
+		"stok": 25,
+		"deskripsi": "Keyboard mekanikal dengan switch biru yang clicky, dilengkapi RGB penuh dan bahan aluminium yang kokoh.",
+		"tags": ["strikerv2", "keyboard", "mekanikal", "aksesoris", "rgb", "gaming"]
+	},
+	{
+		"id": "prod-003",
+		"nama": "Mouse Gaming MousePro",
+		"kategori": "Aksesoris",
+		"harga": 800000,
+		"stok": 15,
+		"deskripsi": "Mouse gaming ringan dengan sensor presisi tinggi hingga 16.000 DPI dan desain ergonomis untuk penggunaan jangka panjang.",
+		"tags": ["mousepro", "mouse", "gaming", "aksesoris", "ergonomis", "ringan"]
+	},
+	{
+		"id": "info-001",
+		"nama": "Jam Operasional Toko",
+		"kategori": "Informasi",
+		"deskripsi": "Toko kami buka setiap hari Senin hingga Sabtu, dari jam 09:00 pagi sampai 18:00 sore. Hari Minggu dan tanggal merah kami libur.",
+		"tags": ["jam", "waktu", "operasional", "buka", "tutup", "jadwal", "libur"]
+	},
+	{
+		"id": "info-002",
+		"nama": "Lokasi Toko",
+		"kategori": "Informasi",
+		"deskripsi": "Alamat toko fisik kami berada di Jl. Digital Raya No. 123, Jakarta Pusat.",
+		"tags": ["lokasi", "alamat", "tempat", "toko", "fisik"]
+	}
+]
