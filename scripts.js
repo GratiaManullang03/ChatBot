@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 	// === KONSTANTA & VARIABEL GLOBAL ===
-	const API_URL = 'https://api.together.xyz/v1/chat/completions';
+	// The API URL now points to our own serverless function
+	const API_URL = '/api/chat';
 	const MODEL = 'deepseek-ai/DeepSeek-V3';
-	let knowledgeBase = []; // Akan diisi dari data.json
-	let conversationHistory = []; // Dikosongkan, diisi setelah inisialisasi
+	let knowledgeBase = [];
+	let conversationHistory = [];
 
 	// === ELEMEN DOM ===
 	const chatWindow = document.getElementById('chat-window');
@@ -70,21 +71,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		const userInput = messageInput.value.trim();
 		if (!userInput) return;
 
-		// Tampilkan pesan pengguna dan tambahkan ke riwayat
 		addMessage(userInput, true);
 		conversationHistory.push({ role: 'user', content: userInput });
 		messageInput.value = '';
 
-		// Cari konteks relevan dari knowledge base
 		const context = findRelevantContext(userInput);
-
 		let finalPrompt = userInput;
 		if (context) {
 			finalPrompt = `Konteks Relevan:\n${context}\n\n---\n\nPertanyaan Pengguna: "${userInput}"`;
 			console.log('Prompt dengan konteks:', finalPrompt);
 		}
 
-		// Dapatkan dan tampilkan respons AI
 		await getAIResponse(finalPrompt);
 	}
 
@@ -93,13 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	 */
 	function handleClearChat() {
 		chatWindow.innerHTML = '';
-		initializeApp(); // Re-inisialisasi chat ke kondisi awal
+		initializeApp();
 	}
 
 	/**
-	 * Mencari konteks yang relevan dari knowledge base berdasarkan input pengguna
-	 * @param {string} userInput - Teks dari pengguna
-	 * @returns {string} - String berisi konteks yang ditemukan atau string kosong
+	 * Mencari konteks yang relevan dari knowledge base
 	 */
 	function findRelevantContext(userInput) {
 		const keywords = userInput.toLowerCase().split(/\s+/);
@@ -108,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		knowledgeBase.forEach((item) => {
 			const itemText = (item.nama + ' ' + item.tags.join(' ')).toLowerCase();
 			if (keywords.some((keyword) => itemText.includes(keyword))) {
-				// Format item menjadi string yang mudah dibaca
 				let itemInfo = `- Nama: ${item.nama}\n  Deskripsi: ${item.deskripsi}`;
 				if (item.harga)
 					itemInfo += `\n  Harga: Rp ${item.harga.toLocaleString('id-ID')}`;
@@ -121,30 +115,25 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	/**
-	 * Mengirim permintaan ke API dan menampilkan respons
-	 * @param {string} promptToSend - Prompt yang akan dikirim (bisa dengan atau tanpa konteks)
+	 * Mengirim permintaan ke serverless function dan menampilkan respons
 	 */
 	async function getAIResponse(promptToSend) {
 		const typingIndicator = showTypingIndicator();
 		sendBtn.disabled = true;
 
-		// Buat salinan riwayat sementara untuk dikirim ke API
 		const apiHistory = JSON.parse(JSON.stringify(conversationHistory));
-		// Ganti pesan pengguna terakhir dengan prompt yang sudah diperkaya konteks
 		apiHistory[apiHistory.length - 1].content = promptToSend;
 
 		try {
 			const response = await fetch(API_URL, {
 				method: 'POST',
 				headers: {
-					Authorization: `Bearer ${TOGETHER_API_KEY}`,
 					'Content-Type': 'application/json',
 				},
+				// We no longer send the API key from the frontend
 				body: JSON.stringify({
 					model: MODEL,
 					messages: apiHistory,
-					temperature: 0.7,
-					max_tokens: 512,
 				}),
 			});
 
@@ -160,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			const data = await response.json();
 			const aiMessage = data.choices[0].message.content;
 
-			// Tambahkan respons AI murni ke riwayat dan tampilkan
 			conversationHistory.push({ role: 'assistant', content: aiMessage });
 			addMessage(aiMessage, false);
 		} catch (error) {
@@ -190,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			? 'bg-indigo-200 text-white'
 			: 'bg-gray-200 text-indigo-600';
 
-		// Proses dengan marked.js untuk respons AI
 		const processedText = isUser
 			? `<p>${text}</p>`
 			: marked.parse(text, { sanitize: true });
@@ -228,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	/**
 	 * Menampilkan indikator pengetikan
-	 * @returns {HTMLElement} Elemen indikator
 	 */
 	function showTypingIndicator() {
 		const typingElement = document.createElement('div');

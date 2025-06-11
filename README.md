@@ -10,18 +10,19 @@ Ini adalah proyek chatbot AI berbasis web yang sederhana namun kuat. Chatbot ini
 
 ## ✨ Fitur-fitur Utama
 
+- **Arsitektur Aman**: API Key tidak lagi diekspos di frontend. Semua panggilan ke API eksternal ditangani melalui serverless function yang aman.
 - **Konteks Dinamis**: Pengetahuan chatbot dimuat dari file `data.json` eksternal, membuatnya mudah untuk diperbarui dan dikelola.
-- **Retrieval-Augmented Generation (RAG)**: Secara otomatis mencari data yang relevan dengan pertanyaan pengguna dan menyuntikkannya sebagai konteks ke dalam prompt API.
-- **Render Markdown**: Respons dari AI yang diformat dalam Markdown (seperti daftar, teks tebal, atau blok kode) ditampilkan dengan benar di antarmuka.
-- **Persona Kustom**: Kepribadian dan aturan AI dapat dengan mudah diubah melalui _System Prompt_ di `script.js`.
+- **Retrieval-Augmented Generation (RAG)**: Secara otomatis mencari data yang relevan dengan pertanyaan pengguna dan menyuntikkannya sebagai konteks ke dalam prompt.
+- **Render Markdown**: Respons dari AI yang diformat dalam Markdown ditampilkan dengan benar di antarmuka.
 - **UI Responsif**: Tampilan bersih dan modern yang dibuat dengan Tailwind CSS, berfungsi baik di desktop maupun mobile.
-- **Mudah Dikonfigurasi**: Cukup ganti API key dan edit file `data.json` untuk menyesuaikan dengan kebutuhan Anda.
+- **Siap Deploy**: Dikonfigurasi untuk kemudahan deployment di platform seperti Vercel menggunakan Environment Variables.
 
 ---
 
 ## 🚀 Tumpukan Teknologi
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+)
+- **Backend**: Node.js (via Vercel Serverless Functions)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **AI API**: [Together.ai](https://together.ai/)
 - **Markdown Parser**: [Marked.js](https://marked.js.org/)
@@ -30,7 +31,7 @@ Ini adalah proyek chatbot AI berbasis web yang sederhana namun kuat. Chatbot ini
 
 ## 🔧 Instalasi dan Penggunaan
 
-Untuk menjalankan proyek ini di mesin lokal Anda, ikuti langkah-langkah berikut:
+Untuk menjalankan proyek ini di mesin lokal Anda atau mendeploy-nya, ikuti langkah-langkah berikut:
 
 **1. Clone Repositori**
 
